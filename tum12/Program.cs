@@ -8,12 +8,7 @@ namespace tum12
 {
     internal class Program
     {
-        private static Comparison<Book> GetCompareByTitle()
-        {
-            return CompareByTitle;
-        }
-
-        static void Main(string[] args, Comparison<Book> compareByTitle)
+        static void Main(string[] args) 
         {
             BooksContainer container = new BooksContainer();
 
@@ -37,22 +32,9 @@ namespace tum12
             container.PrintBooks();
         }
 
-        // Делегаты для сравнения книг
-        delegate int Comparison<Book>(Book book1, Book book2);
-
-        static Comparison<Book> CompareByTitle = delegate (Book book1, Book book2)
-        {
-            return String.Compare(book1.Title, book2.Title);
-        };
-
-        static Comparison<Book> CompareByAuthor = delegate (Book book1, Book book2)
-        {
-            return String.Compare(book1.Author, book2.Author);
-        };
-
-        static Comparison<Book> CompareByPublisher = delegate (Book book1, Book book2)
-        {
-            return String.Compare(book1.Publisher, book2.Publisher);
-        };
+        
+        static Comparison<Book> CompareByTitle = (book1, book2) => String.Compare(book1.Title, book2.Title);
+        static Comparison<Book> CompareByAuthor = (book1, book2) => String.Compare(book1.Author, book2.Author);
+        static Comparison<Book> CompareByPublisher = (book1, book2) => String.Compare(book1.Publisher, book2.Publisher);
     }
 }
